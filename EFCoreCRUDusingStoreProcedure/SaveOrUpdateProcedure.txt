@@ -1,0 +1,27 @@
+USE [SchoolDB]
+GO
+/****** Object:  StoredProcedure [dbo].[PRO_SAVEORUPDATE_STUDENT]    Script Date: 8/20/2023 5:32:01 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[PRO_SAVEORUPDATE_STUDENT]
+	@StudentID int =0,
+	@Name varchar(50)='',
+	@Age int=0
+AS
+BEGIN
+	BEGIN TRAN
+		IF(@StudentID=0)
+		BEGIN
+		INSERT INTO Students([Name],Age)Values(@Name,@Age)
+		Set @StudentID=(Select SCOPE_IDENTITY())
+END
+ElSE
+BEGIN
+   UPDATE Students set [Name]=@Name, Age=@Age where StudentID=@StudentID
+   End
+   select * from Students where StudentID=@StudentID
+   Commit Tran
+End

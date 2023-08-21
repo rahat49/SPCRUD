@@ -1,0 +1,17 @@
+USE [SchoolDB]
+GO
+/****** Object:  StoredProcedure [dbo].[PRO_DELETE_STUDENT]    Script Date: 8/20/2023 5:32:40 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[PRO_DELETE_STUDENT]
+	@StudentID int
+	
+AS
+BEGIN
+	BEGIN TRAN
+		DELETE  FROM Students where StudentID=@StudentID
+   COMMIT TRAN
+End

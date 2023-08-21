@@ -1,0 +1,21 @@
+USE [SchoolDB]
+GO
+/****** Object:  StoredProcedure [dbo].[PRO_GET_STUDENTS]    Script Date: 8/20/2023 5:33:22 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[PRO_GET_STUDENTS]
+	@Name varchar(50)=''
+AS
+BEGIN
+	IF(TRIM(@Name) !='')
+	BEGIN
+	SELECT *FROM Students where Name like @Name+'%'
+END
+ElSE
+BEGIN
+   SELECT * FROM Students
+   End
+End
